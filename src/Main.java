@@ -1,15 +1,15 @@
 public class Main {
-    public static void printAllArr(Employee[] arr) {
-        for (Employee employee : arr) {
+    public static void printAllArr() {
+        for (Employee employee : employee) {
             if (employee != null) {
                 System.out.println(employee + " ");
             }
         }
     }
 
-    public static int summ(Employee[] arr) {
+    public static int summ() {
         int sum = 0;
-        for (Employee employee : arr) {
+        for (Employee employee : employee) {
             if (employee != null) {
                 sum = sum + employee.getSalary();
             }
@@ -17,49 +17,40 @@ public class Main {
         return sum;
     }
 
-    public static int max(Employee[] arr) {
-        int max = 0;
-        for (Employee employee : arr) {
-            if (employee != null && max < employee.getSalary()) {
-                max = employee.getSalary();
+
+    public static void maxName() {
+        Employee max = null;
+        for (Employee employee : employee) {
+            if (employee == null) {
+                continue;
+            }
+            if (max == null || employee.getSalary() > max.getSalary()) {
+                max = employee;
             }
         }
-        return max;
+        System.out.println("Сотрудник с максимальной зп " + max);
     }
 
-    public static void maxName(Employee[] arr) {
-
-        for (Employee employee : arr) {
-            if (employee != null && max(arr) == employee.getSalary()) {
-                System.out.println("сотрудник с максимальой зарплатой = " + employee);
+    public static void minName() {
+        Employee min = null;
+        for (Employee employee : employee) {
+            if (employee == null) {
+                continue;
+            }
+            if (min == null || employee.getSalary() < min.getSalary()) {
+                min = employee;
             }
         }
+        System.out.println("Сотрудник с минимальной зп " + min);
     }
 
-    public static int min(Employee[] arr) {
-        int min = max(arr);
-        for (Employee employee : arr) {
-            if (employee != null && min > employee.getSalary()) {
-                min = employee.getSalary();
-            }
-        }
-        return min;
-    }
 
-    public static void minName(Employee[] arr) {
-
-        for (Employee employee : arr) {
-            if (employee != null && min(arr) == employee.getSalary()) {
-                System.out.println("сотрудник с минимальной зарплатой = " + employee);
-            }
-        }
-    }
-
-    public static double srSalary(Employee[] arr) {
+    public static double srSalary() {
         double srSralary = 0;
-        int c = summ(arr) * 100;
+        int c = summ() * 100;
+
         int i = 0;
-        for (Employee employee : arr) {
+        for (Employee employee : employee) {
             if (employee != null) {
                 i++;
             }
@@ -68,18 +59,16 @@ public class Main {
         return srSralary / 100;
     }
 
-    public static void main(String[] args) {
-        Employee[] employee = new Employee[10];
-        employee[0] = new Employee("wf", "wdx", "wfas", 1, 45687);
-        employee[1] = new Employee("wf", "wdx", "wfas", 2, 25384);
-        employee[2] = new Employee("wf", "wdx", "wfas", 3, 764316);
-        printAllArr(employee);
-        System.out.println("summ(employee) = " + summ(employee));
-        System.out.println("max(employee) = " + max(employee));
-        System.out.println("min(employee) = " + min(employee));
-        System.out.println("srSalary(employee) = " + srSalary(employee));
-        maxName(employee);
-        minName(employee);
+    public static Employee[] employee = new Employee[10];
 
+    public static void main(String[] args) {
+        employee[0] = null;
+        employee[1] = new Employee("wf", "wdx", "wfas", 1, 45687);
+        employee[2] = new Employee("wf", "wdx", "wfas", 2, 25384);
+        employee[3] = new Employee("wf", "wdx", "wfas", 3, 764316);
+        printAllArr();
+        maxName();
+        minName();
+        System.out.println("srSalary() = " + srSalary());
     }
 }
